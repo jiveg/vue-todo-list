@@ -4,7 +4,7 @@
 </style>
 <div id="app">
 	<input v-model="str" type="text" placeholder="Your dream">
-	<button @click="addTodo">Add</button>
+	<button @click="addTodo(this)">Add</button>
 	<ol>
 		<li v-for="todo, i in todos">
 			<div :class="{done: todo.type}">
@@ -25,13 +25,13 @@
 			],
 		}),
 		methods: {
-			addTodo: function(){
-				if(this.str !== ''){
-					this.todos.push({
-						str: this.str,
+			addTodo: function(e){
+				if(e.str !== ''){
+					e.todos.push({
+						str: e.str,
 						type: false
 					})
-					this.str = ''
+					e.str = ''
 				}
 			},
 			removeTodo: function(id){
