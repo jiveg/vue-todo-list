@@ -1,0 +1,38 @@
+<script src="vue.js"></script>
+<div id="app">
+	<input v-model="str" type="text" placeholder="Your dream">
+	<button @click="addTodo">Add</button>
+	<ol>
+		<li v-for="todo, i in todos">
+			<input type="checkbox" v-model="todo.type">{{todo.str}}
+			<a href=javascript:void(0) @click="removeTodo(i)">Delete</a>
+		</li>
+	</ol>
+</div>
+<script>
+	const Main = {
+		data: () => ({
+			str: '',
+			todos:
+			[
+				{str: 'Earn 1M$', type: true},
+			],
+		}),
+		methods: {
+			addTodo: function(){
+				if(this.str !== ''){
+					this.todos.push({
+						str: this.str,
+						type: false
+					})
+					this.str = ''
+				}
+			},
+			removeTodo: function(id){
+				this.todos.splice(id, 1);
+			}
+		}
+	}
+	const App = Vue.extend(Main)
+	new App().$mount('#app')
+</script>
