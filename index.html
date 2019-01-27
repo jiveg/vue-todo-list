@@ -1,11 +1,17 @@
 <script src="vue.js"></script>
+<style type="text/css">
+	.done { text-decoration: line-through; }
+</style>
 <div id="app">
 	<input v-model="str" type="text" placeholder="Your dream">
 	<button @click="addTodo">Add</button>
 	<ol>
 		<li v-for="todo, i in todos">
-			<input type="checkbox" v-model="todo.type">{{todo.str}}
-			<a href=javascript:void(0) @click="removeTodo(i)">Delete</a>
+			<div :class="{done: todo.type}">
+				<input type="checkbox" v-model="todo.type">
+				{{todo.str}}
+				<button @click="removeTodo(i)">Delete</button>
+			</div>
 		</li>
 	</ol>
 </div>
